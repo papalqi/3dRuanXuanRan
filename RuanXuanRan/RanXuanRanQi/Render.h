@@ -24,10 +24,9 @@ public:
 	void camera_at_zero(float x, float y, float z);
 
 	void init_texture();
-
+	void clear();
 	device mDevice;
 	void screen_update(void);
-
 	void screen_dispatch(void);
 
 

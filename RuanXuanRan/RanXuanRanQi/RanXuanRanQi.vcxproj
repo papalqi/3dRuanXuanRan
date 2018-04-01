@@ -71,6 +71,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>D:\CodeSpace\3dRuanXuanRan\RuanXuanRan\RanXuanRanQi\libpng\include;$(IncludePath)</IncludePath>
+    <LibraryPath>D:\CodeSpace\3dRuanXuanRan\RuanXuanRan\RanXuanRanQi\libpng\prebuild\windows;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
@@ -147,15 +149,23 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="device.cpp" />
+    <ClCompile Include="image.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="objects.cpp" />
     <ClCompile Include="Render.cpp" />
+    <ClCompile Include="s.cpp" />
+    <ClCompile Include="texture.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="device.h" />
+    <ClInclude Include="dirlight.h" />
     <ClInclude Include="geometry.h" />
+    <ClInclude Include="image.h" />
     <ClInclude Include="math.h" />
+    <ClInclude Include="objects.h" />
     <ClInclude Include="Render.h" />
+    <ClInclude Include="texture.h" />
     <ClInclude Include="transform.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

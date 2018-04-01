@@ -27,6 +27,18 @@
     <ClCompile Include="Render.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="objects.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="s.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="image.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="math.h">
@@ -42,6 +54,18 @@
       <Filter>头文件</Filter>
     </ClInclude>
     <ClInclude Include="Render.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="dirlight.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="objects.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="image.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="texture.h">
       <Filter>头文件</Filter>
     </ClInclude>
   </ItemGroup>

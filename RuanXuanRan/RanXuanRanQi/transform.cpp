@@ -18,7 +18,7 @@ void transform::transform_init(int width, int height)
 	this->h = (float)height;
 	transform_update();
 }
-
+//进入齐次裁剪空间，进行cvv裁剪
 int transform::transform_check_cvv(const vector * v)
 {
 	float w = v->w;

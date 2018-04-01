@@ -10,7 +10,7 @@ public:
 	matrix transforms;     // transform = world * view * projection
 	float w, h;             // 屏幕大小
 
-							// 矩阵更新，计算 transform = world * view * projection
+	// 矩阵更新，计算 transform = world * view * projection
 	void transform_update();
 	// 初始化，设置屏幕长宽
 	void transform_init(int width, int height);

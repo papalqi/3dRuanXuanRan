@@ -1,3 +1,12 @@
-﻿  main.cpp
+﻿  objects.cpp
+  正在生成代码...
+  正在编译...
+  transform.cpp
+  Render.cpp
+d:\codespace\3druanxuanran\ruanxuanran\ranxuanranqi\render.cpp(52): warning C4838: 从“int”转换到“DWORD”需要收缩转换
+  main.cpp
+d:\codespace\3druanxuanran\ruanxuanran\ranxuanranqi\main.cpp(49): warning C4244: “参数”: 从“double”转换到“DWORD”，可能丢失数据
+  device.cpp
+  正在生成代码...
   RanXuanRanQi.vcxproj -> D:\CodeSpace\3dRuanXuanRan\RuanXuanRan\Debug\RanXuanRanQi.exe
   RanXuanRanQi.vcxproj -> D:\CodeSpace\3dRuanXuanRan\RuanXuanRan\Debug\RanXuanRanQi.pdb (Full PDB)

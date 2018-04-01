@@ -14,19 +14,18 @@ int main()
 	int kbhit = 0;
 	float alpha = 1;
 	float pos = 3.5;
-
-	TCHAR *title = _T("Mini3d (software render tutorial) - ")
-		_T("Left/Right: rotation, Up/Down: forward/backward, Space: switch state");
-
+	//定义窗口名称
+	TCHAR *title = _T("软件渲染器");
+	//设置窗口大小并初始化
 	if (render.screen_init(800, 600, title))
 		return -1;
-
+	//渲染器的初始化
 	render.Render_init();
 
-
+	//交互循环
 	while (screen_exit == 0 && screen_keys[VK_ESCAPE] == 0) {
 		render.screen_dispatch();
-		render.mDevice.device_clear( 1);
+		render.clear( );
 		render.camera_at_zero( pos, 0, 0);
 
 		if (screen_keys[VK_UP]) pos -= 0.01f;
@@ -47,7 +46,7 @@ int main()
 
 		render.draw_box(alpha);
 		render.screen_update();
-		Sleep(1);
+		Sleep(0.1);
 	}
 	return 0;
 }

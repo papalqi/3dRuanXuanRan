@@ -1,20 +1,32 @@
 #pragma once
 #include <cmath>
+
+
 //定义四维矩阵
-struct matrix
+class matrix
 {
+public:
 	float m[4][4];
 };
 //定义四维向量
-struct vector
+class vector
 {
+public:
+	vector()
+	{
+
+	}
+	vector(float a, float  b, float c, float d)
+	{
+		x = a; y = b; z = c; d = w;
+	}
 	float x, y, z, w;
 };
 static int CMID(int x, int min, int max) { return (x < min) ? min : ((x > max) ? max : x); }
 
 // 计算插值：t 为 [0, 1] 之间的数值
 static float interp(float x1, float x2, float t) { return x1 + (x2 - x1) * t; }
-
+typedef vector point;
 // 计算向量长度
 static float vector_length(const vector *v) {
 	float sq = v->x * v->x + v->y * v->y + v->z * v->z;
@@ -123,7 +135,7 @@ static void matrix_apply(vector *y, const vector *x, const matrix *m) {
 	y->z = X * m->m[0][2] + Y * m->m[1][2] + Z * m->m[2][2] + W * m->m[3][2];
 	y->w = X * m->m[0][3] + Y * m->m[1][3] + Z * m->m[2][3] + W * m->m[3][3];
 }
-
+//变成一个标准矩阵
 static void matrix_set_identity(matrix *m) {
 	m->m[0][0] = m->m[1][1] = m->m[2][2] = m->m[3][3] = 1.0f;
 	m->m[0][1] = m->m[0][2] = m->m[0][3] = 0.0f;

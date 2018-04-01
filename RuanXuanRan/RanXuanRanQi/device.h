@@ -31,7 +31,7 @@ public:
 
 
 
-	void device_init(int width, int height, void *fb);
+public:
 	void device_destroy();
 	void device_set_texture(void *bits, long pitch, int w, int h);
 	void device_clear(int mode);
@@ -42,5 +42,7 @@ public:
 	void device_render_trap(trapezoid *trap);
 	void device_draw_primitive(const vertex *v1,
 		const vertex *v2, const vertex *v3);
+	void device_init(int width, int height, void *fb);
+	void device_update();
 
 };

@@ -10,17 +10,17 @@ vertex mesh[8] = {
 	{ { -1,  1, -1, 1 },{ 1, 1 },{ 1.0f, 0.3f, 0.3f }, 1 },
 	{ { 1,  1, -1, 1 },{ 1, 0 },{ 0.2f, 1.0f, 0.3f }, 1 },
 };
-static HWND screen_handle = NULL;		// 主窗口 HWND
-static HDC screen_dc = NULL;			// 配套的 HDC
-static HBITMAP screen_hb = NULL;		// DIB
-static HBITMAP screen_ob = NULL;		// 老的 BITMAP
+static HWND screen_handle = NULL;		
+static HDC screen_dc = NULL;			
+static HBITMAP screen_hb = NULL;		// 新的位图
+static HBITMAP screen_ob = NULL;		// 老的 位图
 static LRESULT screen_events(HWND, UINT, WPARAM, LPARAM);
 int screen_w, screen_h, screen_exit = 0;
 int screen_mx = 0, screen_my = 0, screen_mb = 0;
 int screen_keys[512];	// 当前键盘按下状态
 unsigned char *screen_fb = NULL;		// frame buffer
 long screen_pitch = 0;
-
+//事件处理
 static LRESULT screen_events(HWND hWnd, UINT msg,
 	WPARAM wParam, LPARAM lParam) {
 	switch (msg) {
@@ -31,6 +31,7 @@ static LRESULT screen_events(HWND hWnd, UINT msg,
 	}
 	return 0;
 }
+//渲染初始化
 void Render::Render_init()
 {
 	{
@@ -42,6 +43,7 @@ void Render::Render_init()
 
 	}
 }
+//屏幕初始化
 int Render::screen_init(int w, int h, const TCHAR * title)
 {
 	WNDCLASS wc = { CS_BYTEALIGNCLIENT, (WNDPROC)screen_events, 0, 0, 0,
@@ -99,31 +101,36 @@ int Render::screen_init(int w, int h, const TCHAR * title)
 
 int Render::screen_close(void)
 {
-	if (screen_dc) {
-		if (screen_ob) {
+	if (screen_dc) 
+	{
+		if (screen_ob) 
+		{
 			SelectObject(screen_dc, screen_ob);
 			screen_ob = NULL;
 		}
 		DeleteDC(screen_dc);
 		screen_dc = NULL;
 	}
-	if (screen_hb) {
+	if (screen_hb)
+	{
 		DeleteObject(screen_hb);
 		screen_hb = NULL;
 	}
-	if (screen_handle) {
+	if (screen_handle) 
+	{
 		CloseWindow(screen_handle);
 		screen_handle = NULL;
 	}
 	return 0;
 }
-
+//画面
 void Render::draw_plane(int a, int b, int c, int d)
 {
 	{
 		vertex p1 = mesh[a], p2 = mesh[b], p3 = mesh[c], p4 = mesh[d];
 		p1.tc.u = 0, p1.tc.v = 0, p2.tc.u = 0, p2.tc.v = 1;
 		p3.tc.u = 1, p3.tc.v = 1, p4.tc.u = 1, p4.tc.v = 0;
+		//分解成三角形进行绘制
 		mDevice.device_draw_primitive(&p1, &p2, &p3);
 		mDevice.device_draw_primitive(&p3, &p4, &p1);
 	}
@@ -135,7 +142,7 @@ void Render::draw_box(float theta)
 		matrix m;
 		matrix_set_rotate(&m, -1, -0.5, 1, theta);
 		mDevice.transforms.world = m;
-		mDevice.transforms.transform_update();
+		mDevice.device_update();
 		draw_plane(0, 1, 2, 3);
 		draw_plane(4, 5, 6, 7);
 		draw_plane(0, 4, 5, 1);
@@ -150,7 +157,7 @@ void Render::camera_at_zero(float x, float y, float z)
 	{
 		vector eye = { x, y, z, 1 }, at = { 0, 0, 0, 1 }, up = { 0, 0, 1, 1 };
 		matrix_set_lookat(&mDevice.transforms.view, &eye, &at, &up);
-		mDevice.transforms.transform_update();
+		mDevice.device_update();
 
 	}
 }
@@ -168,6 +175,12 @@ void Render::init_texture()
 		}
 		mDevice.device_set_texture(texture, 256 * 4, 256, 256);
 	}
+}
+
+void Render::clear()
+{
+	mDevice.device_clear(1);
+
 }
 
 void Render::screen_update(void)

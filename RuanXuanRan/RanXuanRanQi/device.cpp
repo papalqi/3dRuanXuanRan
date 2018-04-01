@@ -35,6 +35,12 @@ void device::device_init(int width, int height, void * fb)
 	this->render_state = RENDER_STATE_WIREFRAME;
 }
 
+void device::device_update()
+{
+	transforms. transform_update();
+
+}
+
 void device::device_destroy()
 {
 	if (this->framebuffer)
@@ -198,27 +204,34 @@ void device::device_render_trap(trapezoid * trap)
 		if (j >= this->height) break;
 	}
 }
-
+//绘制
 void device::device_draw_primitive(const vertex * v1, const vertex * v2, const vertex * v3)
 {
 	vector p1, p2, p3, c1, c2, c3;
 	int render_state = this->render_state;
 
-	// 按照 Transform 变化
+	//通过坐标变换进行变换到投影坐标上
 	this->transforms.transform_apply(&c1, &v1->pos);
 	this->transforms.transform_apply(&c2, &v2->pos);
 	this->transforms.transform_apply(&c3, &v3->pos);
-
+	//返回如果为0，则说明不在范围内，直接退出，也就是说，如果有一个点不再，则都不绘制
 	// 裁剪，注意此处可以完善为具体判断几个点在 cvv内以及同cvv相交平面的坐标比例
 	// 进行进一步精细裁剪，将一个分解为几个完全处在 cvv内的三角形
 	if (transforms.transform_check_cvv(&c1) != 0) return;
 	if (transforms.transform_check_cvv(&c2) != 0) return;
 	if (transforms.transform_check_cvv(&c3) != 0) return;
 
-	// 归一化
+	// 
 	transforms.transform_homogenize(&p1, &c1);
 	transforms.transform_homogenize(&p2, &c2);
 	transforms.transform_homogenize(&p3, &c3);
+	// 背面剔除
+	vector t21, t32;
+	vectorSub(&t21, &v2->pos, &v1->pos);
+	vectorSub(&t32, &v3->pos, &v2->pos);
+		if (t21.x * t32.y - t32.x * t21.y > 0)     // 计算叉积
+			return;
+	
 
 	// 纹理或者色彩绘制
 	if (render_state & (RENDER_STATE_TEXTURE | RENDER_STATE_COLOR)) {
