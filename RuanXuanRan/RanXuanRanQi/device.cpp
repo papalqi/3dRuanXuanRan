@@ -1,9 +1,9 @@
 #include "device.h"
 
-void device::device_init(int width, int height, void * fb)
+void device::device_init(int width, int height, void* fb)
 {
 	int need = sizeof(void*) * (height * 2 + 1024) + width * height * 8;
-	char *ptr = (char*)malloc(need + 64);
+	char* ptr = (char*)malloc(need + 64);
 	char *framebuf, *zbuf;
 	int j;
 	assert(ptr);
@@ -16,7 +16,8 @@ void device::device_init(int width, int height, void * fb)
 	zbuf = (char*)ptr + width * height * 4;
 	ptr += width * height * 8;
 	if (fb != NULL) framebuf = (char*)fb;
-	for (j = 0; j < height; j++) {
+	for (j = 0; j < height; j++)
+	{
 		this->framebuffer[j] = (unsigned int*)(framebuf + width * 4 * j);
 		this->zbuffer[j] = (float*)(zbuf + width * 4 * j);
 	}
@@ -37,8 +38,7 @@ void device::device_init(int width, int height, void * fb)
 
 void device::device_update()
 {
-	transforms. transform_update();
-
+	transforms.transform_update();
 }
 
 void device::device_destroy()
@@ -50,12 +50,12 @@ void device::device_destroy()
 	this->texture = NULL;
 }
 
-void device::device_set_texture(void * bits, long pitch, int w, int h)
+void device::device_set_texture(void* bits, long pitch, int w, int h)
 {
-	char *ptr = (char*)bits;
+	char* ptr = (char*)bits;
 	int j;
 	assert(w <= 1024 && h <= 1024);
-	for (j = 0; j < h; ptr += pitch, j++) 	// 重新计算每行纹理的指针
+	for (j = 0; j < h; ptr += pitch, j++) // 重新计算每行纹理的指针
 		this->texture[j] = (unsigned int*)ptr;
 	this->tex_width = w;
 	this->tex_height = h;
@@ -66,22 +66,25 @@ void device::device_set_texture(void * bits, long pitch, int w, int h)
 void device::device_clear(int mode)
 {
 	int y, x, height = this->height;
-	for (y = 0; y < this->height; y++) {
-		unsigned int *dst = this->framebuffer[y];
+	for (y = 0; y < this->height; y++)
+	{
+		unsigned int* dst = this->framebuffer[y];
 		unsigned int cc = (height - 1 - y) * 230 / (height - 1);
 		cc = (cc << 16) | (cc << 8) | cc;
 		if (mode == 0) cc = this->background;
 		for (x = this->width; x > 0; dst++, x--) dst[0] = cc;
 	}
-	for (y = 0; y < this->height; y++) {
-		float *dst = this->zbuffer[y];
+	for (y = 0; y < this->height; y++)
+	{
+		float* dst = this->zbuffer[y];
 		for (x = this->width; x > 0; dst++, x--) dst[0] = 0.0f;
 	}
 }
 
 void device::device_pixel(int x, int y, unsigned int color)
 {
-	if (((unsigned int)x) < (unsigned int)this->width && ((unsigned int)y) < (unsigned int)this->height) {
+	if (((unsigned int)x) < (unsigned int)this->width && ((unsigned int)y) < (unsigned int)this->height)
+	{
 		this->framebuffer[y][x] = color;
 	}
 }
@@ -89,28 +92,35 @@ void device::device_pixel(int x, int y, unsigned int color)
 void device::device_draw_line(int x1, int y1, int x2, int y2, unsigned int c)
 {
 	int x, y, rem = 0;
-	if (x1 == x2 && y1 == y2) {
+	if (x1 == x2 && y1 == y2)
+	{
 		device_pixel(x1, y1, c);
 	}
-	else if (x1 == x2) {
+	else if (x1 == x2)
+	{
 		int inc = (y1 <= y2) ? 1 : -1;
 		for (y = y1; y != y2; y += inc) device_pixel(x1, y, c);
 		device_pixel(x2, y2, c);
 	}
-	else if (y1 == y2) {
+	else if (y1 == y2)
+	{
 		int inc = (x1 <= x2) ? 1 : -1;
 		for (x = x1; x != x2; x += inc) device_pixel(x, y1, c);
 		device_pixel(x2, y2, c);
 	}
-	else {
+	else
+	{
 		int dx = (x1 < x2) ? x2 - x1 : x1 - x2;
 		int dy = (y1 < y2) ? y2 - y1 : y1 - y2;
-		if (dx >= dy) {
+		if (dx >= dy)
+		{
 			if (x2 < x1) x = x1, y = y1, x1 = x2, y1 = y2, x2 = x, y2 = y;
-			for (x = x1, y = y1; x <= x2; x++) {
+			for (x = x1, y = y1; x <= x2; x++)
+			{
 				device_pixel(x, y, c);
 				rem += dy;
-				if (rem >= dx) {
+				if (rem >= dx)
+				{
 					rem -= dx;
 					y += (y2 >= y1) ? 1 : -1;
 					device_pixel(x, y, c);
@@ -118,12 +128,15 @@ void device::device_draw_line(int x1, int y1, int x2, int y2, unsigned int c)
 			}
 			device_pixel(x2, y2, c);
 		}
-		else {
+		else
+		{
 			if (y2 < y1) x = x1, y = y1, x1 = x2, y1 = y2, x2 = x, y2 = y;
-			for (x = x1, y = y1; y <= y2; y++) {
+			for (x = x1, y = y1; y <= y2; y++)
+			{
 				device_pixel(x, y, c);
 				rem += dx;
-				if (rem >= dy) {
+				if (rem >= dy)
+				{
 					rem -= dy;
 					x += (x2 >= x1) ? 1 : -1;
 					device_pixel(x, y, c);
@@ -136,7 +149,6 @@ void device::device_draw_line(int x1, int y1, int x2, int y2, unsigned int c)
 
 unsigned int device::device_texture_read(float u, float v)
 {
-
 	int x, y;
 	u = u * this->max_u;
 	v = v * this->max_v;
@@ -148,21 +160,25 @@ unsigned int device::device_texture_read(float u, float v)
 	return 0;
 }
 
-void device::device_draw_scanline(scanline * scanline)
+void device::device_draw_scanline(scanline* scanline)
 {
-	unsigned int *framebuffer = this->framebuffer[scanline->y];
-	float *zbuffer = this->zbuffer[scanline->y];
+	unsigned int* framebuffer = this->framebuffer[scanline->y];
+	float* zbuffer = this->zbuffer[scanline->y];
 	int x = scanline->x;
 	int w = scanline->w;
 	int width = this->width;
 	int render_state = this->render_state;
-	for (; w > 0; x++, w--) {
-		if (x >= 0 && x < width) {
+	for (; w > 0; x++, w--)
+	{
+		if (x >= 0 && x < width)
+		{
 			float rhw = scanline->v.rhw;
-			if (rhw >= zbuffer[x]) {
+			if (rhw >= zbuffer[x])
+			{
 				float w = 1.0f / rhw;
 				zbuffer[x] = rhw;
-				if (render_state & RENDER_STATE_COLOR) {
+				if (render_state & RENDER_STATE_COLOR)
+				{
 					float r = scanline->v.color.r * w;
 					float g = scanline->v.color.g * w;
 					float b = scanline->v.color.b * w;
@@ -174,7 +190,8 @@ void device::device_draw_scanline(scanline * scanline)
 					B = CMID(B, 0, 255);
 					framebuffer[x] = (R << 16) | (G << 8) | (B);
 				}
-				if (render_state & RENDER_STATE_TEXTURE) {
+				if (render_state & RENDER_STATE_TEXTURE)
+				{
 					float u = scanline->v.tc.u * w;
 					float v = scanline->v.tc.v * w;
 					unsigned int cc = device_texture_read(u, v);
@@ -188,15 +205,16 @@ void device::device_draw_scanline(scanline * scanline)
 	}
 }
 
-void device::device_render_trap(trapezoid * trap)
+void device::device_render_trap(trapezoid* trap)
 {
-
 	scanline scanlines;
 	int j, top, bottom;
 	top = (int)(trap->top + 0.5f);
 	bottom = (int)(trap->bottom + 0.5f);
-	for (j = top; j < bottom; j++) {
-		if (j >= 0 && j < this->height) {
+	for (j = top; j < bottom; j++)
+	{
+		if (j >= 0 && j < this->height)
+		{
 			trap->trapezoid_edge_interp((float)j + 0.5f);
 			scanlines.trapezoid_init_scan_line(trap, j);
 			device_draw_scanline(&scanlines);
@@ -204,8 +222,9 @@ void device::device_render_trap(trapezoid * trap)
 		if (j >= this->height) break;
 	}
 }
+
 //绘制
-void device::device_draw_primitive(const vertex * v1, const vertex * v2, const vertex * v3)
+void device::device_draw_primitive(const vertex* v1, const vertex* v2, const vertex* v3)
 {
 	vector p1, p2, p3, c1, c2, c3;
 	int render_state = this->render_state;
@@ -229,12 +248,13 @@ void device::device_draw_primitive(const vertex * v1, const vertex * v2, const v
 	vector t21, t32;
 	vectorSub(&t21, &v2->pos, &v1->pos);
 	vectorSub(&t32, &v3->pos, &v2->pos);
-		if (t21.x * t32.y - t32.x * t21.y > 0)     // 计算叉积
-			return;
-	
+	if (t21.x * t32.y - t32.x * t21.y > 0) // 计算叉积
+		return;
+
 
 	// 纹理或者色彩绘制
-	if (render_state & (RENDER_STATE_TEXTURE | RENDER_STATE_COLOR)) {
+	if (render_state & (RENDER_STATE_TEXTURE | RENDER_STATE_COLOR))
+	{
 		vertex t1 = *v1, t2 = *v2, t3 = *v3;
 		trapezoid traps[2];
 		int n;
@@ -246,21 +266,22 @@ void device::device_draw_primitive(const vertex * v1, const vertex * v2, const v
 		t2.pos.w = c2.w;
 		t3.pos.w = c3.w;
 
-		t1.vertex_rhw_init();	// 初始化 w
-		t2.vertex_rhw_init();	// 初始化 w
-		t3.vertex_rhw_init();	// 初始化 w
+		t1.vertex_rhw_init(); // 初始化 w
+		t2.vertex_rhw_init(); // 初始化 w
+		t3.vertex_rhw_init(); // 初始化 w
 
-								// 拆分三角形为0-2个梯形，并且返回可用梯形数量
+		// 拆分三角形为0-2个梯形，并且返回可用梯形数量
 		n = trapezoid_init_triangle(traps, &t1, &t2, &t3);
 
 		if (n >= 1) device_render_trap(&traps[0]);
 		if (n >= 2) device_render_trap(&traps[1]);
 	}
 
-	if (render_state & RENDER_STATE_WIREFRAME) {		// 线框绘制
+	if (render_state & RENDER_STATE_WIREFRAME)
+	{
+		// 线框绘制
 		device_draw_line((int)p1.x, (int)p1.y, (int)p2.x, (int)p2.y, this->foreground);
 		device_draw_line((int)p1.x, (int)p1.y, (int)p3.x, (int)p3.y, this->foreground);
 		device_draw_line((int)p3.x, (int)p3.y, (int)p2.x, (int)p2.y, this->foreground);
 	}
-
 }

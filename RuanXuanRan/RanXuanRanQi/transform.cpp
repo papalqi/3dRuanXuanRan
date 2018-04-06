@@ -1,4 +1,3 @@
-
 #include "transform.h"
 
 void transform::transform_update()
@@ -18,21 +17,22 @@ void transform::transform_init(int width, int height)
 	this->h = (float)height;
 	transform_update();
 }
+
 //进入齐次裁剪空间，进行cvv裁剪
-int transform::transform_check_cvv(const vector * v)
+int transform::transform_check_cvv(const vector* v)
 {
 	float w = v->w;
 	int check = 0;
 	if (v->z < 0.0f) check |= 1;
-	if (v->z >  w) check |= 2;
+	if (v->z > w) check |= 2;
 	if (v->x < -w) check |= 4;
-	if (v->x >  w) check |= 8;
+	if (v->x > w) check |= 8;
 	if (v->y < -w) check |= 16;
-	if (v->y >  w) check |= 32;
+	if (v->y > w) check |= 32;
 	return check;
 }
 
-void transform::transform_homogenize(vector * y, const vector * x)
+void transform::transform_homogenize(vector* y, const vector* x)
 {
 	float rhw = 1.0f / x->w;
 	y->x = (x->x * rhw + 1.0f) * this->w * 0.5f;

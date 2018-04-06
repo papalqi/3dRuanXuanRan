@@ -3,15 +3,19 @@
 #include"math.h"
 
 //定点颜色
-class color {
+class color
+{
 public:
 	float r, g, b;
 };
+
 //？？
-class texcoord {
+class texcoord
+{
 public:
 	float u, v;
 };
+
 //顶点
 class vertex
 {
@@ -20,9 +24,9 @@ public:
 	texcoord tc;
 	color color;
 	float rhw;
+
 	void vertex_rhw_init()
 	{
-
 		float rhw = 1.0f / this->pos.w;
 		this->rhw = rhw;
 		this->tc.u *= rhw;
@@ -31,7 +35,8 @@ public:
 		this->color.g *= rhw;
 		this->color.b *= rhw;
 	}
-	void vertex_interp(const vertex *x1, const vertex *x2, float t)
+
+	void vertex_interp(const vertex* x1, const vertex* x2, float t)
 	{
 		vector_interp(&this->pos, &x1->pos, &x2->pos, t);
 		this->tc.u = interp(x1->tc.u, x2->tc.u, t);
@@ -41,7 +46,8 @@ public:
 		this->color.b = interp(x1->color.b, x2->color.b, t);
 		this->rhw = interp(x1->rhw, x2->rhw, t);
 	}
-	void vertex_division(const vertex *x1, const vertex*x2, float w)
+
+	void vertex_division(const vertex* x1, const vertex* x2, float w)
 	{
 		float inv = 1.0f / w;
 		this->pos.x = (x2->pos.x - x1->pos.x) * inv;
@@ -55,7 +61,8 @@ public:
 		this->color.b = (x2->color.b - x1->color.b) * inv;
 		this->rhw = (x2->rhw - x1->rhw) * inv;
 	}
-	void vertex_add(const vertex *x)
+
+	void vertex_add(const vertex* x)
 	{
 		this->pos.x += x->pos.x;
 		this->pos.y += x->pos.y;
@@ -71,7 +78,6 @@ public:
 };
 
 
-
 //边
 class edge
 {
@@ -81,10 +87,12 @@ public:
 
 
 //四边形
-class trapezoid {
+class trapezoid
+{
 public:
 
-	float top, bottom; edge left, right;
+	float top, bottom;
+	edge left, right;
 
 
 	void trapezoid_edge_interp(float y)
@@ -97,12 +105,15 @@ public:
 		this->right.v.vertex_interp(&this->right.v1, &this->right.v2, t2);
 	}
 };
+
 //扫描线
 class scanline
 {
 public:
-	vertex v, step; int x, y, w;
-	void trapezoid_init_scan_line(const trapezoid *trap, int y)
+	vertex v, step;
+	int x, y, w;
+
+	void trapezoid_init_scan_line(const trapezoid* trap, int y)
 	{
 		float width = trap->right.v.pos.x - trap->left.v.pos.x;
 		this->x = (int)(trap->left.v.pos.x + 0.5f);
@@ -114,9 +125,10 @@ public:
 	}
 };
 
-static int trapezoid_init_triangle(trapezoid *trap, const vertex *p1,
-	const vertex*p2, const vertex *p3) {
-	const vertex *p;
+static int trapezoid_init_triangle(trapezoid* trap, const vertex* p1,
+                                   const vertex* p2, const vertex* p3)
+{
+	const vertex* p;
 	float k, x;
 
 	if (p1->pos.y > p2->pos.y) p = p1, p1 = p2, p2 = p;
@@ -125,7 +137,9 @@ static int trapezoid_init_triangle(trapezoid *trap, const vertex *p1,
 	if (p1->pos.y == p2->pos.y && p1->pos.y == p3->pos.y) return 0;
 	if (p1->pos.x == p2->pos.x && p1->pos.x == p3->pos.x) return 0;
 
-	if (p1->pos.y == p2->pos.y) {	// triangle down
+	if (p1->pos.y == p2->pos.y)
+	{
+		// triangle down
 		if (p1->pos.x > p2->pos.x) p = p1, p1 = p2, p2 = p;
 		trap[0].top = p1->pos.y;
 		trap[0].bottom = p3->pos.y;
@@ -136,7 +150,9 @@ static int trapezoid_init_triangle(trapezoid *trap, const vertex *p1,
 		return (trap[0].top < trap[0].bottom) ? 1 : 0;
 	}
 
-	if (p2->pos.y == p3->pos.y) {	// triangle up
+	if (p2->pos.y == p3->pos.y)
+	{
+		// triangle up
 		if (p2->pos.x > p3->pos.x) p = p2, p2 = p3, p3 = p;
 		trap[0].top = p1->pos.y;
 		trap[0].bottom = p3->pos.y;
@@ -155,7 +171,9 @@ static int trapezoid_init_triangle(trapezoid *trap, const vertex *p1,
 	k = (p3->pos.y - p1->pos.y) / (p2->pos.y - p1->pos.y);
 	x = p1->pos.x + (p2->pos.x - p1->pos.x) * k;
 
-	if (x <= p3->pos.x) {		// triangle left
+	if (x <= p3->pos.x)
+	{
+		// triangle left
 		trap[0].left.v1 = *p1;
 		trap[0].left.v2 = *p2;
 		trap[0].right.v1 = *p1;
@@ -165,7 +183,9 @@ static int trapezoid_init_triangle(trapezoid *trap, const vertex *p1,
 		trap[1].right.v1 = *p1;
 		trap[1].right.v2 = *p3;
 	}
-	else {					// triangle right
+	else
+	{
+		// triangle right
 		trap[0].left.v1 = *p1;
 		trap[0].left.v2 = *p3;
 		trap[0].right.v1 = *p1;

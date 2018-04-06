@@ -1,9 +1,10 @@
 #pragma once
 #include"geometry.h"
+
 class objects
 {
 public:
-	vertex *mesh;
+	vertex* mesh;
 	unsigned long mesh_num;
 	int* material_ids;
 	int texture_id;
@@ -18,14 +19,14 @@ public:
 	~objects();
 };
 
-class box :objects
+class box : objects
 {
 public:
 	box()
 	{
-		this->pos = point (0, 2, -1, 1) ;
-		this->scale = vector( 0.5, 0.5, 0.5, 0 );
-		this->axis = vector(1, 0, 1, 1 );
+		this->pos = point(0, 2, -1, 1);
+		this->scale = vector(0.5, 0.5, 0.5, 0);
+		this->axis = vector(1, 0, 1, 1);
 		this->theta = 0.0f;
 		//this->mesh = box_mesh;
 		this->mesh_num = 36;
@@ -34,6 +35,4 @@ public:
 		this->shadow = false;
 		this->dirty = true;
 	}
-
 };
-
