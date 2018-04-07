@@ -39,12 +39,11 @@ static LRESULT screen_events(HWND hWnd, UINT msg,
 
 void Render::Render_init(point s, int w, int h, const TCHAR* title)
 {
+	this->screen_init(800, 600, title);
 
-		this->screen_init(800, 600, title);
-	
 	{
 		mDevice.device_init(800, 600, screen_fb);
-		Camera.camera_init(w,h);
+		Camera.camera_init(w, h);
 		init_texture();
 		mDevice.render_state = RENDER_STATE_TEXTURE;
 	}
@@ -56,8 +55,6 @@ void Render::set_camera()
 	mDevice.transforms.view = Camera.view;
 	mDevice.transforms.view_r = Camera.view_matrix_r;
 	mDevice.transforms.projection = Camera.projection;
-	
-
 }
 
 int Render::screen_init(int w, int h, const TCHAR* title)
@@ -145,6 +142,7 @@ int Render::screen_close(void)
 	}
 	return 0;
 }
+
 void Render::renderUpdate(point pos)
 {
 	this->screen_update();
@@ -152,6 +150,7 @@ void Render::renderUpdate(point pos)
 	this->mDevice.device_clear(1);
 	set_camera();
 }
+
 void Render::draw_plane(int a, int b, int c, int d)
 {
 	{
@@ -182,7 +181,7 @@ void Render::draw_box(float theta)
 void Render::camera_at_zero(point s)
 {
 	{
-		vector eye = {s.x,s.y, s.z, 1}, at = {0, 0, 0, 1}, up = {0, 0, 1, 1};
+		vector eye = {s.x, s.y, s.z, 1}, at = {0, 0, 0, 1}, up = {0, 0, 1, 1};
 		matrix_set_lookat(&mDevice.transforms.view, &eye, &at, &up);
 		mDevice.transforms.transform_update();
 	}
@@ -191,7 +190,7 @@ void Render::camera_at_zero(point s)
 void Render::setState()
 {
 	++nowState;
- 	nowState = nowState / 3;
+	nowState = nowState / 3;
 	this->mDevice.render_state = states[nowState];
 }
 

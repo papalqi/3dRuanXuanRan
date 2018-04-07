@@ -31,7 +31,6 @@ public:
 	void screen_update(void);
 	void screen_dispatch(void);
 private:
-	int states[3] = { RENDER_STATE_TEXTURE, RENDER_STATE_COLOR, RENDER_STATE_WIREFRAME };
-	int nowState=0;
-	
+	int states[3] = {RENDER_STATE_TEXTURE, RENDER_STATE_COLOR, RENDER_STATE_WIREFRAME};
+	int nowState = 0;
 };

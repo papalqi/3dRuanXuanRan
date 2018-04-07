@@ -3,6 +3,7 @@
 #define PI 3.141592653
 #define angle_to_radian(X) ((X)/180*PI)
 #define radian_to_angle(X) ((X)/PI*180)
+
 //定义四维矩阵
 struct matrix
 {
@@ -26,13 +27,15 @@ static float vector_length(const vector* v)
 	float sq = v->x * v->x + v->y * v->y + v->z * v->z;
 	return (float)sqrt(sq);
 }
-static void vector_scale(vector *v, float k)
+
+static void vector_scale(vector* v, float k)
 {
 	v->x *= k;
 	v->y *= k;
 	v->z *= k;
 	v->w *= k;
 }
+
 // z = x + y
 static void vectorAdd(vector* z, const vector* x, const vector* y)
 {
@@ -254,9 +257,11 @@ static void matrix_set_perspective(matrix* m, float fovy, float aspect, float zn
 	m->m[3][2] = -zn * zf / (zf - zn);
 	m->m[2][3] = 1;
 }
+
 typedef vector point;
 //设置旋转轴
-static void matrix_set_axis(matrix *m, const vector *xaxis, const vector *yaxis, const vector *zaxis, const point *pos) {
+static void matrix_set_axis(matrix* m, const vector* xaxis, const vector* yaxis, const vector* zaxis, const point* pos)
+{
 	m->m[0][0] = xaxis->x;
 	m->m[0][1] = xaxis->y;
 	m->m[0][2] = xaxis->z;

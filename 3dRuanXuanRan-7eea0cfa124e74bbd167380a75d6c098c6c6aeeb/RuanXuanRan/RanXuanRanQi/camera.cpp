@@ -5,11 +5,11 @@ camera::camera()
 {
 }
 
-void camera::camera_init(int width,int height)
+void camera::camera_init(int width, int height)
 {
-	this->pos = vector{ 0.0f, -2.0f, -2.5f, 1.0f };
-	this->front = vector { 0.0f, 0.0f, 1.0f, 0.0f };
-	this->worldup = vector { 0.0f, 1.0f, 0.0f, 0.0f };
+	this->pos = vector{0.0f, -2.0f, -2.5f, 1.0f};
+	this->front = vector{0.0f, 0.0f, 1.0f, 0.0f};
+	this->worldup = vector{0.0f, 1.0f, 0.0f, 0.0f};
 	this->fovy = 3.1415926 * 0.5f;
 	this->zn = 0.1f;
 	this->zf = 500.0f;
@@ -41,10 +41,9 @@ void camera::camera_init_by_euler(float yaw, float pitch)
 
 void camera::Gofront(float velocity)
 {
-	vector temp= this->front;
+	vector temp = this->front;
 	vector_scale(&temp, velocity);
 	vectorAdd(&this->pos, &this->pos, &temp);
-
 }
 
 void camera::GoRight(float velocity)
@@ -75,8 +74,7 @@ void camera::Goback(float velocity)
 
 void camera::camera_init_projection()
 {
-		matrix_set_perspective(&this->projection, this->fovy, this->aspect, this->zn, this->zf);
-
+	matrix_set_perspective(&this->projection, this->fovy, this->aspect, this->zn, this->zf);
 }
 
 void camera::camera_update()

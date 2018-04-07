@@ -10,10 +10,10 @@ public:
 	matrix view; // 摄影机坐标变换
 	matrix projection; // 投影变换
 	matrix transforms; // transform = world * view * projection
-	matrix view_r;//逆矩阵
-	matrix vp;           // view * projection
-	matrix mv;           // model * view
-	matrix mvp;          // model * view * projection
+	matrix view_r; //逆矩阵
+	matrix vp; // view * projection
+	matrix mv; // model * view
+	matrix mvp; // model * view * projection
 	float w, h; // 屏幕大小
 
 	// 矩阵更新，计算 transform = world * view * projection
@@ -30,6 +30,4 @@ public:
 	int transform_check_cvv(const vector* v);
 	// 归一化，得到屏幕坐标
 	void transform_homogenize(vector* y, const vector* x);
-
-
 };
