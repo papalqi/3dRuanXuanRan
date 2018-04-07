@@ -1,0 +1,20 @@
+﻿  main.cpp
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(67): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(68): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(73): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(74): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(76): warning C4305: “*=”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(77): warning C4305: “*=”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(92): warning C4305: “参数”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(93): warning C4305: “参数”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(94): warning C4305: “参数”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(95): warning C4305: “参数”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(98): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(99): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(102): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(103): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(105): warning C4305: “*=”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(106): warning C4305: “*=”: 从“double”到“float”截断
+d:\codespace\3druanxuanran\3druanxuanran-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\ruanxuanran\ranxuanranqi\main.cpp(123): warning C4244: “参数”: 从“double”转换到“DWORD”，可能丢失数据
+  RanXuanRanQi.vcxproj -> D:\CodeSpace\3dRuanXuanRan\3dRuanXuanRan-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\RuanXuanRan\x64\Debug\RanXuanRanQi.exe
+  RanXuanRanQi.vcxproj -> D:\CodeSpace\3dRuanXuanRan\3dRuanXuanRan-7eea0cfa124e74bbd167380a75d6c098c6c6aeeb\RuanXuanRan\x64\Debug\RanXuanRanQi.pdb (Full PDB)
