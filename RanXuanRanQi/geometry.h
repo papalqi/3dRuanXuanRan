@@ -1,22 +1,22 @@
-#pragma once
+ï»¿#pragma once
 
 #include"math.h"
 
-//¶¨µãÑÕÉ«
+//å®šç‚¹é¢œè‰²
 class color
 {
 public:
 	float r, g, b;
 };
 
-//£¿£¿
+//ï¼Ÿï¼Ÿ
 class texcoord
 {
 public:
 	float u, v;
 };
 
-//¶¥µã
+//é¡¶ç‚¹
 class vertex
 {
 public:
@@ -77,23 +77,20 @@ public:
 	}
 };
 
-
-//±ß
+//è¾¹
 class edge
 {
 public:
 	vertex v, v1, v2;
 };
 
-
-//ËÄ±ßĞÎ
+//å››è¾¹å½¢
 class trapezoid
 {
 public:
 
 	float top, bottom;
 	edge left, right;
-
 
 	void trapezoid_edge_interp(float y)
 	{
@@ -106,7 +103,7 @@ public:
 	}
 };
 
-//É¨ÃèÏß
+//æ‰«æçº¿
 class scanline
 {
 public:
@@ -126,7 +123,7 @@ public:
 };
 
 static int trapezoid_init_triangle(trapezoid* trap, const vertex* p1,
-                                   const vertex* p2, const vertex* p3)
+	const vertex* p2, const vertex* p3)
 {
 	const vertex* p;
 	float k, x;

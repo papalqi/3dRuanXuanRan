@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include <cmath>
 #define PI 3.141592653
 #define angle_to_radian(X) ((X)/180*PI)
 #define radian_to_angle(X) ((X)/PI*180)
 
-//¶¨ÒåËÄÎ¬¾ØÕó
+//å®šä¹‰å››ç»´çŸ©é˜µ
 struct matrix
 {
 	float m[4][4];
 };
 
-//¶¨ÒåËÄÎ¬ÏòÁ¿
+//å®šä¹‰å››ç»´å‘é‡
 struct vector
 {
 	float x, y, z, w;
@@ -18,10 +18,10 @@ struct vector
 
 static int CMID(int x, int min, int max) { return (x < min) ? min : ((x > max) ? max : x); }
 
-// ¼ÆËã²åÖµ£ºt Îª [0, 1] Ö®¼äµÄÊıÖµ
+// è®¡ç®—æ’å€¼ï¼št ä¸º [0, 1] ä¹‹é—´çš„æ•°å€¼
 static float interp(float x1, float x2, float t) { return x1 + (x2 - x1) * t; }
 
-// ¼ÆËãÏòÁ¿³¤¶È
+// è®¡ç®—å‘é‡é•¿åº¦
 static float vector_length(const vector* v)
 {
 	float sq = v->x * v->x + v->y * v->y + v->z * v->z;
@@ -54,13 +54,13 @@ static void vectorSub(vector* z, const vector* x, const vector* y)
 	z->w = 1.0;
 }
 
-// Ê¸Á¿µã³Ë
+// çŸ¢é‡ç‚¹ä¹˜
 static float vector_dotproduct(const vector* x, const vector* y)
 {
 	return x->x * y->x + x->y * y->y + x->z * y->z;
 }
 
-// Ê¸Á¿²æ³Ë
+// çŸ¢é‡å‰ä¹˜
 static void vector_crossproduct(vector* z, const vector* x, const vector* y)
 {
 	float m1, m2, m3;
@@ -73,7 +73,7 @@ static void vector_crossproduct(vector* z, const vector* x, const vector* y)
 	z->w = 1.0f;
 }
 
-// Ê¸Á¿²åÖµ£¬tÈ¡Öµ [0, 1]
+// çŸ¢é‡æ’å€¼ï¼Œtå–å€¼ [0, 1]
 static void vector_interp(vector* z, const vector* x1, const vector* x2, float t)
 {
 	z->x = interp(x1->x, x2->x, t);
@@ -82,7 +82,7 @@ static void vector_interp(vector* z, const vector* x1, const vector* x2, float t
 	z->w = 1.0f;
 }
 
-// Ê¸Á¿¹éÒ»»¯
+// çŸ¢é‡å½’ä¸€åŒ–
 static void vector_normalize(vector* v)
 {
 	float length = vector_length(v);
@@ -173,7 +173,7 @@ static void matrix_set_zero(matrix* m)
 	m->m[3][0] = m->m[3][1] = m->m[3][2] = m->m[3][3] = 0.0f;
 }
 
-// Æ½ÒÆ±ä»»
+// å¹³ç§»å˜æ¢
 static void matrix_set_translate(matrix* m, float x, float y, float z)
 {
 	matrix_set_identity(m);
@@ -182,7 +182,7 @@ static void matrix_set_translate(matrix* m, float x, float y, float z)
 	m->m[3][2] = z;
 }
 
-// Ëõ·Å±ä»»
+// ç¼©æ”¾å˜æ¢
 static void matrix_set_scale(matrix* m, float x, float y, float z)
 {
 	matrix_set_identity(m);
@@ -191,12 +191,12 @@ static void matrix_set_scale(matrix* m, float x, float y, float z)
 	m->m[2][2] = z;
 }
 
-// Ğı×ª¾ØÕó
+// æ—‹è½¬çŸ©é˜µ
 static void matrix_set_rotate(matrix* m, float x, float y, float z, float theta)
 {
 	float qsin = (float)sin(theta * 0.5f);
 	float qcos = (float)cos(theta * 0.5f);
-	vector vec = {x, y, z, 1.0f};
+	vector vec = { x, y, z, 1.0f };
 	float w = qcos;
 	vector_normalize(&vec);
 	x = vec.x * qsin;
@@ -216,7 +216,7 @@ static void matrix_set_rotate(matrix* m, float x, float y, float z, float theta)
 	m->m[3][3] = 1.0f;
 }
 
-// ÉèÖÃÉãÏñ»ú
+// è®¾ç½®æ‘„åƒæœº
 static void matrix_set_lookat(matrix* m, const vector* eye, const vector* at, const vector* up)
 {
 	vector xaxis, yaxis, zaxis;
@@ -259,7 +259,8 @@ static void matrix_set_perspective(matrix* m, float fovy, float aspect, float zn
 }
 
 typedef vector point;
-//ÉèÖÃĞı×ªÖá
+
+//è®¾ç½®æ—‹è½¬è½´
 static void matrix_set_axis(matrix* m, const vector* xaxis, const vector* yaxis, const vector* zaxis, const point* pos)
 {
 	m->m[0][0] = xaxis->x;
@@ -277,3 +278,5 @@ static void matrix_set_axis(matrix* m, const vector* xaxis, const vector* yaxis,
 	m->m[0][3] = m->m[1][3] = m->m[2][3] = 0.0f;
 	m->m[3][3] = 1.0f;
 }
+
+//TODO::æ‰€æœ‰çš„çŸ©é˜µè®¡ç®—è¿›è¡Œå°è£…ï¼Œè°ƒç”¨Eigenåº“

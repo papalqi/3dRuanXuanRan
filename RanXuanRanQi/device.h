@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -8,29 +8,28 @@
 #include"transform.h"
 #include"geometry.h"
 #include"math.h"
-#define RENDER_STATE_WIREFRAME      1		// äÖÈ¾Ïß¿ò
-#define RENDER_STATE_TEXTURE        2		// äÖÈ¾ÎÆÀí
-#define RENDER_STATE_COLOR          4		// äÖÈ¾ÑÕÉ«
-#define IUINT32 
+#define RENDER_STATE_WIREFRAME      1		// æ¸²æŸ“çº¿æ¡†
+#define RENDER_STATE_TEXTURE        2		// æ¸²æŸ“çº¹ç†
+#define RENDER_STATE_COLOR          4		// æ¸²æŸ“é¢œè‰²
+#define IUINT32
 
 class device
 {
 public:
 
-	transform transforms; // ×ø±ê±ä»»Æ÷
-	int width; // ´°¿Ú¿í¶È
-	int height; // ´°¿Ú¸ß¶È
-	unsigned int** framebuffer; // ÏñËØ»º´æ£ºframebuffer[y] ´ú±íµÚ yĞĞ
-	float** zbuffer; // Éî¶È»º´æ£ºzbuffer[y] ÎªµÚ yĞĞÖ¸Õë
-	unsigned int** texture; // ÎÆÀí£ºÍ¬ÑùÊÇÃ¿ĞĞË÷Òı
-	int tex_width; // ÎÆÀí¿í¶È
-	int tex_height; // ÎÆÀí¸ß¶È
-	float max_u; // ÎÆÀí×î´ó¿í¶È£ºtex_width - 1
-	float max_v; // ÎÆÀí×î´ó¸ß¶È£ºtex_height - 1
-	int render_state; // äÖÈ¾×´Ì¬
-	unsigned int background; // ±³¾°ÑÕÉ«
-	unsigned int foreground; // Ïß¿òÑÕÉ«
-
+	transform transforms; // åæ ‡å˜æ¢å™¨
+	int width; // çª—å£å®½åº¦
+	int height; // çª—å£é«˜åº¦
+	unsigned int** framebuffer; // åƒç´ ç¼“å­˜ï¼šframebuffer[y] ä»£è¡¨ç¬¬ yè¡Œ
+	float** zbuffer; // æ·±åº¦ç¼“å­˜ï¼šzbuffer[y] ä¸ºç¬¬ yè¡ŒæŒ‡é’ˆ
+	unsigned int** texture; // çº¹ç†ï¼šåŒæ ·æ˜¯æ¯è¡Œç´¢å¼•
+	int tex_width; // çº¹ç†å®½åº¦
+	int tex_height; // çº¹ç†é«˜åº¦
+	float max_u; // çº¹ç†æœ€å¤§å®½åº¦ï¼štex_width - 1
+	float max_v; // çº¹ç†æœ€å¤§é«˜åº¦ï¼štex_height - 1
+	int render_state; // æ¸²æŸ“çŠ¶æ€
+	unsigned int background; // èƒŒæ™¯é¢œè‰²
+	unsigned int foreground; // çº¿æ¡†é¢œè‰²
 
 	void device_init(int width, int height, void* fb);
 	void device_destroy();
@@ -42,5 +41,5 @@ public:
 	void device_draw_scanline(scanline* scanline);
 	void device_render_trap(trapezoid* trap);
 	void device_draw_primitive(const vertex* v1,
-	                           const vertex* v2, const vertex* v3);
+		const vertex* v2, const vertex* v3);
 };

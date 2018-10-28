@@ -1,15 +1,15 @@
-#pragma once
+ï»¿#pragma once
 #include "math.h"
 
 class camera
 {
 public:
-	point pos; //Î»ÖÃ
-	point front; //ÃæÇ°·½Ïò
-	point worldup; //zÕı·½ĞÎ
-	matrix view; //ÊÓ¾õ×ª»»¾ØÕó
-	matrix projection; //Í¶Ó°¾ØÕó
-	matrix view_matrix_r; //ÊÓ¾õÄæ¾ØÕó
+	point pos; //ä½ç½®
+	point front; //é¢å‰æ–¹å‘
+	point worldup; //zæ­£æ–¹å½¢
+	matrix view; //è§†è§‰è½¬æ¢çŸ©é˜µ
+	matrix projection; //æŠ•å½±çŸ©é˜µ
+	matrix view_matrix_r; //è§†è§‰é€†çŸ©é˜µ
 	int width;
 	int height;
 	float fovy;
@@ -25,9 +25,11 @@ public:
 public:
 	camera();
 	void camera_init(int width, int height);
+
 	//	void camera_init();
 	~camera();
-	//Å·À­½ÇÊµÏÖĞı×ª
+
+	//æ¬§æ‹‰è§’å®ç°æ—‹è½¬
 	void camera_init_by_euler(float yaw, float pitch);
 	void camera_init_projection();
 	void camera_update();

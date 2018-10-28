@@ -76,7 +76,7 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>G:\workSpace\3dRuanXuanRan\Plugins\SDL2\include;G:\workSpace\3dRuanXuanRan\include;$(IncludePath)</IncludePath>
+    <IncludePath>G:\workSpace\3dRuanXuanRan\Plugins;G:\workSpace\3dRuanXuanRan\Plugins\SDL2\include;G:\workSpace\3dRuanXuanRan\include;$(IncludePath)</IncludePath>
     <LibraryPath>G:\workSpace\3dRuanXuanRan\Plugins\SDL2\prebuild;$(LibraryPath)</LibraryPath>
     <LibraryWPath>$(LibraryWPath)</LibraryWPath>
   </PropertyGroup>
@@ -155,6 +155,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="device.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Matrix.cpp" />
     <ClCompile Include="Render.cpp" />
     <ClCompile Include="transform.cpp" />
   </ItemGroup>
@@ -162,6 +163,7 @@
     <ClInclude Include="camera.h" />
     <ClInclude Include="device.h" />
     <ClInclude Include="geometry.h" />
+    <ClInclude Include="Matrix.h" />
     <ClInclude Include="math.h" />
     <ClInclude Include="Render.h" />
     <ClInclude Include="sdl.h" />

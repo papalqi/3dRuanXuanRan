@@ -1,5 +1,4 @@
-#include "camera.h"
-
+﻿#include "camera.h"
 
 camera::camera()
 {
@@ -7,25 +6,26 @@ camera::camera()
 
 void camera::camera_init(int width, int height)
 {
-	this->pos = vector{0.0f, -2.0f, -2.5f, 1.0f};
-	this->front = vector{0.0f, 0.0f, 1.0f, 0.0f};
-	this->worldup = vector{0.0f, 1.0f, 0.0f, 0.0f};
+	this->pos = vector{ 0.0f, -2.0f, -2.5f, 1.0f };
+	this->front = vector{ 0.0f, 0.0f, 1.0f, 0.0f };
+	this->worldup = vector{ 0.0f, 1.0f, 0.0f, 0.0f };
 	this->fovy = 3.1415926 * 0.5f;
 	this->zn = 0.1f;
 	this->zf = 500.0f;
 	this->width = width;
 	this->height = height;
 	this->aspect = (float)width / (float)height;
+
 	//this->projection = perspective;
 	this->left = -1.0f;
 	this->right = 1.0f;
 	this->bottom = -1.0f;
 	this->top = 1.0f;
 	camera_init_projection();
+
 	//this->dirty = true;
 	//this_count++;
 }
-
 
 camera::~camera()
 {
@@ -70,7 +70,6 @@ void camera::Goback(float velocity)
 	vector_scale(&temp, velocity);
 	vectorSub(&this->pos, &this->pos, &temp);
 }
-
 
 void camera::camera_init_projection()
 {

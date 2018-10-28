@@ -1,4 +1,4 @@
-#include "device.h"
+ï»¿#include "device.h"
 
 void device::device_init(int width, int height, void* fb)
 {
@@ -50,7 +50,7 @@ void device::device_set_texture(void* bits, long pitch, int w, int h)
 	char* ptr = (char*)bits;
 	int j;
 	assert(w <= 1024 && h <= 1024);
-	for (j = 0; j < h; ptr += pitch, j++) // ÖØÐÂ¼ÆËãÃ¿ÐÐÎÆÀíµÄÖ¸Õë
+	for (j = 0; j < h; ptr += pitch, j++) // é‡æ–°è®¡ç®—æ¯è¡Œçº¹ç†çš„æŒ‡é’ˆ
 		this->texture[j] = (unsigned int*)ptr;
 	this->tex_width = w;
 	this->tex_height = h;
@@ -223,23 +223,23 @@ void device::device_draw_primitive(const vertex* v1, const vertex* v2, const ver
 	vector p1, p2, p3, c1, c2, c3;
 	int render_state = this->render_state;
 
-	// °´ÕÕ Transform ±ä»¯
+	// æŒ‰ç…§ Transform å˜åŒ–
 	this->transforms.transform_apply(&c1, &v1->pos);
 	this->transforms.transform_apply(&c2, &v2->pos);
 	this->transforms.transform_apply(&c3, &v3->pos);
 
-	// ²Ã¼ô£¬×¢Òâ´Ë´¦¿ÉÒÔÍêÉÆÎª¾ßÌåÅÐ¶Ï¼¸¸öµãÔÚ cvvÄÚÒÔ¼°Í¬cvvÏà½»Æ½ÃæµÄ×ø±ê±ÈÀý
-	// ½øÐÐ½øÒ»²½¾«Ï¸²Ã¼ô£¬½«Ò»¸ö·Ö½âÎª¼¸¸öÍêÈ«´¦ÔÚ cvvÄÚµÄÈý½ÇÐÎ
+	// è£å‰ªï¼Œæ³¨æ„æ­¤å¤„å¯ä»¥å®Œå–„ä¸ºå…·ä½“åˆ¤æ–­å‡ ä¸ªç‚¹åœ¨ cvvå†…ä»¥åŠåŒcvvç›¸äº¤å¹³é¢çš„åæ ‡æ¯”ä¾‹
+	// è¿›è¡Œè¿›ä¸€æ­¥ç²¾ç»†è£å‰ªï¼Œå°†ä¸€ä¸ªåˆ†è§£ä¸ºå‡ ä¸ªå®Œå…¨å¤„åœ¨ cvvå†…çš„ä¸‰è§’å½¢
 	if (transforms.transform_check_cvv(&c1) != 0) return;
 	if (transforms.transform_check_cvv(&c2) != 0) return;
 	if (transforms.transform_check_cvv(&c3) != 0) return;
 
-	// ¹éÒ»»¯
+	// å½’ä¸€åŒ–
 	transforms.transform_homogenize(&p1, &c1);
 	transforms.transform_homogenize(&p2, &c2);
 	transforms.transform_homogenize(&p3, &c3);
 
-	// ÎÆÀí»òÕßÉ«²Ê»æÖÆ
+	// çº¹ç†æˆ–è€…è‰²å½©ç»˜åˆ¶
 	if (render_state & (RENDER_STATE_TEXTURE | RENDER_STATE_COLOR))
 	{
 		vertex t1 = *v1, t2 = *v2, t3 = *v3;
@@ -253,11 +253,11 @@ void device::device_draw_primitive(const vertex* v1, const vertex* v2, const ver
 		t2.pos.w = c2.w;
 		t3.pos.w = c3.w;
 
-		t1.vertex_rhw_init(); // ³õÊ¼»¯ w
-		t2.vertex_rhw_init(); // ³õÊ¼»¯ w
-		t3.vertex_rhw_init(); // ³õÊ¼»¯ w
+		t1.vertex_rhw_init(); // åˆå§‹åŒ– w
+		t2.vertex_rhw_init(); // åˆå§‹åŒ– w
+		t3.vertex_rhw_init(); // åˆå§‹åŒ– w
 
-		// ²ð·ÖÈý½ÇÐÎÎª0-2¸öÌÝÐÎ£¬²¢ÇÒ·µ»Ø¿ÉÓÃÌÝÐÎÊýÁ¿
+		// æ‹†åˆ†ä¸‰è§’å½¢ä¸º0-2ä¸ªæ¢¯å½¢ï¼Œå¹¶ä¸”è¿”å›žå¯ç”¨æ¢¯å½¢æ•°é‡
 		n = trapezoid_init_triangle(traps, &t1, &t2, &t3);
 
 		if (n >= 1) device_render_trap(&traps[0]);
@@ -266,7 +266,7 @@ void device::device_draw_primitive(const vertex* v1, const vertex* v2, const ver
 
 	if (render_state & RENDER_STATE_WIREFRAME)
 	{
-		// Ïß¿ò»æÖÆ
+		// çº¿æ¡†ç»˜åˆ¶
 		device_draw_line((int)p1.x, (int)p1.y, (int)p2.x, (int)p2.y, this->foreground);
 		device_draw_line((int)p1.x, (int)p1.y, (int)p3.x, (int)p3.y, this->foreground);
 		device_draw_line((int)p3.x, (int)p3.y, (int)p2.x, (int)p2.y, this->foreground);

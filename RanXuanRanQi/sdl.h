@@ -18,11 +18,11 @@ bool sdl_init(int width, int height, const char* title)
 	}
 	else
 	{
-		
 		if (!SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "1"))
 		{
 			printf("Warning: Linear texture filtering not enabled!");
 		}
+
 		//Create window
 		gWindow = SDL_CreateWindow(title, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, SDL_WINDOW_SHOWN);
 		if (gWindow == NULL)
@@ -52,7 +52,6 @@ bool sdl_init(int width, int height, const char* title)
 
 void sdl_close()
 {
-	
 	SDL_DestroyRenderer(gRenderer);
 	SDL_DestroyWindow(gWindow);
 	gWindow = NULL;

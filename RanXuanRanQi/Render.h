@@ -1,4 +1,4 @@
-#pragma once
+Ôªø#pragma once
 
 #include<Windows.h>
 #include"device.h"
@@ -12,15 +12,14 @@
 
 #endif
 
-
 class Render
 {
 public:
 	void Render_init(point, int w, int h, const TCHAR* title);
 	void set_camera();
 	camera Camera;
-	int screen_init(int w, int h, const TCHAR* title); // ∆¡ƒª≥ı ºªØ
-	int screen_close(void); // πÿ±’∆¡ƒª
+	int screen_init(int w, int h, const TCHAR* title); // Â±èÂπïÂàùÂßãÂåñ
+	int screen_close(void); // ÂÖ≥Èó≠Â±èÂπï
 	void draw_plane(int a, int b, int c, int d);
 	void draw_box(float theta);
 	void camera_at_zero(point s);
@@ -31,6 +30,6 @@ public:
 	void screen_update(void);
 	void screen_dispatch(void);
 private:
-	int states[3] = {RENDER_STATE_TEXTURE, RENDER_STATE_COLOR, RENDER_STATE_WIREFRAME};
+	int states[3] = { RENDER_STATE_TEXTURE, RENDER_STATE_COLOR, RENDER_STATE_WIREFRAME };
 	int nowState = 0;
 };

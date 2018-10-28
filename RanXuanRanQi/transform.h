@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 
 #include"math.h"
 
@@ -6,28 +6,31 @@ class transform
 {
 public:
 
-	matrix world; // ÊÀ½ç×ø±ê±ä»»
-	matrix view; // ÉãÓ°»ú×ø±ê±ä»»
-	matrix projection; // Í¶Ó°±ä»»
+	matrix world; // ä¸–ç•Œåæ ‡å˜æ¢
+	matrix view; // æ‘„å½±æœºåæ ‡å˜æ¢
+	matrix projection; // æŠ•å½±å˜æ¢
 	matrix transforms; // transform = world * view * projection
-	matrix view_r; //Äæ¾ØÕó
+	matrix view_r; //é€†çŸ©é˜µ
 	matrix vp; // view * projection
 	matrix mv; // model * view
 	matrix mvp; // model * view * projection
-	float w, h; // ÆÁÄ»´óĞ¡
+	float w, h; // å±å¹•å¤§å°
 
-	// ¾ØÕó¸üĞÂ£¬¼ÆËã transform = world * view * projection
+	// çŸ©é˜µæ›´æ–°ï¼Œè®¡ç®— transform = world * view * projection
 	void transform_update();
-	// ³õÊ¼»¯£¬ÉèÖÃÆÁÄ»³¤¿í
+
+	// åˆå§‹åŒ–ï¼Œè®¾ç½®å±å¹•é•¿å®½
 	void transform_init(int width, int height);
-	// ½«Ê¸Á¿ x ½øĞĞ project 
+
+	// å°†çŸ¢é‡ x è¿›è¡Œ project
 	void transform_apply(vector* y, const vector* x)
 	{
 		matrix_apply(y, x, &this->transforms);
 	}
 
-	// ¼ì²éÆë´Î×ø±êÍ¬ cvv µÄ±ß½çÓÃÓÚÊÓ×¶²Ã¼ô
+	// æ£€æŸ¥é½æ¬¡åæ ‡åŒ cvv çš„è¾¹ç•Œç”¨äºè§†é”¥è£å‰ª
 	int transform_check_cvv(const vector* v);
-	// ¹éÒ»»¯£¬µÃµ½ÆÁÄ»×ø±ê
+
+	// å½’ä¸€åŒ–ï¼Œå¾—åˆ°å±å¹•åæ ‡
 	void transform_homogenize(vector* y, const vector* x);
 };

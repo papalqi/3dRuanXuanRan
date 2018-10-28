@@ -1,4 +1,4 @@
-#include<Windows.h>
+Ôªø#include<Windows.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <tchar.h>
@@ -7,12 +7,10 @@
 
 #undef main
 
-
 extern int screen_exit;
 extern int screen_keys[512];
 const int SCREEN_WIDTH = 600;
 const int SCREEN_HEIGHT = 600;
-
 
 int main()
 {
@@ -26,16 +24,19 @@ int main()
 	}
 	SDL_Event e;
 	Render render;
-	//ø’∏ÒÀ¯
+
+	//Á©∫Ê†ºÈîÅ
 
 	float alpha = 1;
 	bool firstMouse = true;
 	float c_yaw = 0.0f;
 	float c_pitch = 0.0f;
-	point pos = {3.5, 0, 0};
-	//∂®“Â¥∞ø⁄√˚≥∆
-	TCHAR* title = _T("»Ìº˛‰÷»æ∆˜");
-	//…Ë÷√¥∞ø⁄¥Û–°≤¢≥ı ºªØ
+	point pos = { 3.5, 0, 0 };
+
+	//ÂÆö‰πâÁ™óÂè£ÂêçÁß∞
+	TCHAR* title = _T("ËΩØ‰ª∂Ê∏≤ÊüìÂô®");
+
+	//ËÆæÁΩÆÁ™óÂè£Â§ßÂ∞èÂπ∂ÂàùÂßãÂåñ
 	render.Render_init(pos, SCREEN_WIDTH, SCREEN_HEIGHT, title);
 
 	float c_lastX = SCREEN_WIDTH >> 1, c_lastY = SCREEN_HEIGHT >> 1;
@@ -47,7 +48,8 @@ int main()
 			{
 				quit = true;
 			}
-				//User presses a key
+
+			//User presses a key
 			else if (e.type == SDL_KEYDOWN)
 			{
 				screen_keys[e.key.keysym.scancode] = 1;
@@ -81,8 +83,7 @@ int main()
 			}
 		}
 
-
-		//Œª÷√◊™ªª
+		//‰ΩçÁΩÆËΩ¨Êç¢
 		if (screen_keys[SDL_SCANCODE_W]) render.Camera.Gofront(0.1);
 		if (screen_keys[SDL_SCANCODE_S]) render.Camera.Goback(0.1);
 		if (screen_keys[SDL_SCANCODE_A]) render.Camera.Goleft(0.1);
@@ -106,7 +107,8 @@ int main()
 			if (c_pitch < -89.0f)
 				c_pitch = -89.0f;
 		}
-		//Ω¯––‰÷»æ∆˜∏¸–¬
+
+		//ËøõË°åÊ∏≤ÊüìÂô®Êõ¥Êñ∞
 		SDL_SetRenderDrawColor(gRenderer, 0xFF, 0xFF, 0xFF, 0xFF);
 		SDL_RenderClear(gRenderer);
 		render.renderUpdate(pos);

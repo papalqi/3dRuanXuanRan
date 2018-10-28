@@ -1,4 +1,4 @@
-#include "Render.h"
+ï»¿#include "Render.h"
 
 vertex mesh[8] = {
 	{{1, -1, 1, 1}, {0, 0}, {1.0f, 0.2f, 0.2f}, 1},
@@ -10,19 +10,19 @@ vertex mesh[8] = {
 	{{-1, 1, -1, 1}, {1, 1}, {1.0f, 0.3f, 0.3f}, 1},
 	{{1, 1, -1, 1}, {1, 0}, {0.2f, 1.0f, 0.3f}, 1},
 };
-static HWND screen_handle = NULL; // Ö÷´°¿Ú HWND
-static HDC screen_dc = NULL; // ÅäÌ×µÄ HDC
+static HWND screen_handle = NULL; // ä¸»çª—å£ HWND
+static HDC screen_dc = NULL; // é…å¥—çš„ HDC
 static HBITMAP screen_hb = NULL; // DIB
-static HBITMAP screen_ob = NULL; // ÀÏµÄ BITMAP
+static HBITMAP screen_ob = NULL; // è€çš„ BITMAP
 static LRESULT screen_events(HWND, UINT, WPARAM, LPARAM);
 int screen_w, screen_h, screen_exit = 0;
 int screen_mx = 0, screen_my = 0, screen_mb = 0;
-int screen_keys[512]; // µ±Ç°¼üÅÌ°´ÏÂ×´Ì¬
+int screen_keys[512]; // å½“å‰é”®ç›˜æŒ‰ä¸‹çŠ¶æ€
 unsigned char* screen_fb = NULL; // frame buffer
 long screen_pitch = 0;
 
 static LRESULT screen_events(HWND hWnd, UINT msg,
-                             WPARAM wParam, LPARAM lParam)
+	WPARAM wParam, LPARAM lParam)
 {
 	switch (msg)
 	{
@@ -69,7 +69,7 @@ int Render::screen_init(int w, int h, const TCHAR* title)
 			w * h * 4, 0, 0, 0, 0
 		}
 	};
-	RECT rect = {0, 0, w, h};
+	RECT rect = { 0, 0, w, h };
 	int wx, wy, sx, sy;
 	LPVOID ptr;
 	HDC hDC;
@@ -181,7 +181,7 @@ void Render::draw_box(float theta)
 void Render::camera_at_zero(point s)
 {
 	{
-		vector eye = {s.x, s.y, s.z, 1}, at = {0, 0, 0, 1}, up = {0, 0, 1, 1};
+		vector eye = { s.x, s.y, s.z, 1 }, at = { 0, 0, 0, 1 }, up = { 0, 0, 1, 1 };
 		matrix_set_lookat(&mDevice.transforms.view, &eye, &at, &up);
 		mDevice.transforms.transform_update();
 	}

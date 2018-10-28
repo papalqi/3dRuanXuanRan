@@ -1,0 +1,33 @@
+﻿  main.cpp
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(63): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(64): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(69): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(70): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(72): warning C4305: “*=”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(73): warning C4305: “*=”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(86): warning C4305: “参数”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(87): warning C4305: “参数”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(88): warning C4305: “参数”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(89): warning C4305: “参数”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(92): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(93): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(96): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(97): warning C4244: “=”: 从“Sint32”转换到“float”，可能丢失数据
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(99): warning C4305: “*=”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(100): warning C4305: “*=”: 从“double”到“float”截断
+g:\workspace\3druanxuanran\ranxuanranqi\main.cpp(115): warning C4244: “参数”: 从“double”转换到“DWORD”，可能丢失数据
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_GetError，该符号在函数 "bool __cdecl sdl_init(int,int,char const *)" (?sdl_init@@YA_NHHPBD@Z) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_CreateWindow，该符号在函数 "bool __cdecl sdl_init(int,int,char const *)" (?sdl_init@@YA_NHHPBD@Z) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_DestroyWindow，该符号在函数 "void __cdecl sdl_close(void)" (?sdl_close@@YAXXZ) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_PollEvent，该符号在函数 _main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_SetHint，该符号在函数 "bool __cdecl sdl_init(int,int,char const *)" (?sdl_init@@YA_NHHPBD@Z) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_CreateRenderer，该符号在函数 "bool __cdecl sdl_init(int,int,char const *)" (?sdl_init@@YA_NHHPBD@Z) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_SetRenderDrawColor，该符号在函数 "bool __cdecl sdl_init(int,int,char const *)" (?sdl_init@@YA_NHHPBD@Z) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_RenderClear，该符号在函数 _main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_RenderPresent，该符号在函数 _main 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_DestroyRenderer，该符号在函数 "void __cdecl sdl_close(void)" (?sdl_close@@YAXXZ) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_Init，该符号在函数 "bool __cdecl sdl_init(int,int,char const *)" (?sdl_init@@YA_NHHPBD@Z) 中被引用
+main.obj : error LNK2019: 无法解析的外部符号 _SDL_Quit，该符号在函数 "void __cdecl sdl_close(void)" (?sdl_close@@YAXXZ) 中被引用
+G:\workSpace\3dRuanXuanRan\prebuild\SDL2.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+G:\workSpace\3dRuanXuanRan\prebuild\SDL2main.lib : warning LNK4272: 库计算机类型“x64”与目标计算机类型“x86”冲突
+G:\workSpace\3dRuanXuanRan\Debug\RanXuanRanQi.exe : fatal error LNK1120: 12 个无法解析的外部命令
